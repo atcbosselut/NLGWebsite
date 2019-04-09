@@ -9,7 +9,7 @@ function getResponse(){
   if (prompt === inpFdefault || prompt === "")
     return; // show warning message?
   hist = document.getElementById("history");
-  hist.innerHTML += `<div class="history user">${prompt}</div>`;
+  hist.innerHTML = `<div class="history user">${prompt}</div>`;
   inpF.value = "";
   console.log([inpF.value]);
   console.log(prompt);
@@ -18,24 +18,151 @@ function getResponse(){
   var nlgResponse = "SWABHA's MY FAVORITE NLPer!";
 
   var toSend;
-  if (document.getElementById("separateTalkTurns").checked){
-    toSend = $.trim(prompt).replace(/\n/g,"|||");
-  } else {
-    toSend = $.trim(hist.innerText).replace(/\n/g,"|||");
+  toSend = $.trim(prompt).replace(/\n/g,"|||");
+  toSend += '|';
+  if(document.getElementById('fileid').value=="atomic"){
+    toSend += getDimAtomic() + '|' + getSampling();
+
   }
+  else{
+    toSend += getDimConceptNet() + '|' + getSampling();
+  }
+  console.log(toSend);
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
   	if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
       console.log(xmlHttp.responseText);
       nlgResponse = xmlHttp.responseText;
-      hist.innerHTML += `<div class="history nlg">${nlgResponse}</div>`;
-      hist.innerHTML += `<hr class="removable">`;
+      hist.innerHTML = `<div class="history nlg">${nlgResponse}</div>`;
       checkboxes(document.getElementById("enableDialogue"));
       checkboxes(document.getElementById("separateTalkTurns"));
     }
   }
   xmlHttp.open("POST", window.location.href+"?inputText="+toSend, true);
   xmlHttp.send();
+}
+
+
+function getSampling(){
+  var retval = "";
+
+  if (document.getElementById("g").checked){
+    return "g";
+  }
+  else if (document.getElementById("b5").checked){
+    return "b5";
+  }
+  else {
+    return "b10";
+  }
+}
+
+function getDimConceptNet(){
+  var retval = "";
+  if (document.getElementById("AtLocation").checked){
+    retval += "AtLocation,";
+  }
+
+  if (document.getElementById("CapableOf").checked){
+    retval += "CapableOf,";
+  }
+  if (document.getElementById("Causes").checked){
+    retval += "Causes,";
+  }
+  if (document.getElementById("CausesDesire").checked){
+    retval += "CausesDesire,";
+  }
+  if (document.getElementById("CreatedBy").checked){
+    retval += "CreatedBy,";
+  }
+  if (document.getElementById("DefinedAs").checked){
+    retval += "DefinedAs,";
+  }
+  if (document.getElementById("Desires").checked){
+    retval += "Desires,";
+  }
+  if (document.getElementById("HasA").checked){
+    retval += "HasA,";
+  }
+  if (document.getElementById("HasFirstSubevent").checked){
+    retval += "HasFirstSubevent,";
+  }
+
+  if (document.getElementById("HasLastSubevent").checked){
+    retval += "HasLastSubevent,";
+  }
+  if (document.getElementById("HasPrerequisite").checked){
+    retval += "HasPrerequisite,";
+  }
+  if (document.getElementById("HasProperty").checked){
+    retval += "HasProperty,";
+  }
+  if (document.getElementById("HasSubevent").checked){
+    retval += "HasSubevent,";
+  }
+  if (document.getElementById("IsA").checked){
+    retval += "IsA,";
+  }
+  if (document.getElementById("MadeOf").checked){
+    retval += "MadeOf,";
+  }
+  if (document.getElementById("MotivatedByGoal").checked){
+    retval += "MotivatedByGoal,";
+  }
+  if (document.getElementById("PartOf").checked){
+    retval += "PartOf,";
+  }
+  if (document.getElementById("ReceivesAction").checked){
+    retval += "ReceivesAction,";
+  }
+  if (document.getElementById("SymbolOf").checked){
+    retval += "SymbolOf,";
+  }
+  if (document.getElementById("UsedFor").checked){
+    retval += "UsedFor,";
+  }
+
+  if (document.getElementById("all").checked){
+    retval = "all";
+  }
+  return retval.slice(0, -1);
+}
+
+function getDimAtomic(){
+  var retval = "";
+
+  if (document.getElementById("xintent").checked){
+    retval += "xIntent,";
+  }
+
+  if (document.getElementById("xreact").checked){
+    retval += "xReact,";
+  }
+  if (document.getElementById("oreact").checked){
+    retval += "oReact,";
+  }
+  if (document.getElementById("xattrib").checked){
+    retval += "xAttrib,";
+  }
+  if (document.getElementById("xeffect").checked){
+    retval += "xEffect,";
+  }
+  if (document.getElementById("oeffect").checked){
+    retval += "oEffect,";
+  }
+  if (document.getElementById("xneed").checked){
+    retval += "xNeed,";
+  }
+  if (document.getElementById("xwant").checked){
+    retval += "xWant,";
+  }
+  if (document.getElementById("owant").checked){
+    retval += "oWant,";
+  }
+  if (document.getElementById("all").checked){
+    retval = "all";
+  }
+  return retval.slice(0, -1);
 }
 
 function checkboxes(cb){
