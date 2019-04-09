@@ -9,7 +9,7 @@ function getResponse(){
   if (prompt === inpFdefault || prompt === "")
     return; // show warning message?
   hist = document.getElementById("history");
-  hist.innerHTML += `<div class="history user">${prompt}</div>`;
+  hist.innerHTML = `<div class="history user">${prompt}</div>`;
   inpF.value = "";
   console.log([inpF.value]);
   console.log(prompt);
