@@ -18,24 +18,72 @@ function getResponse(){
   var nlgResponse = "SWABHA's MY FAVORITE NLPer!";
 
   var toSend;
-  if (document.getElementById("separateTalkTurns").checked){
-    toSend = $.trim(prompt).replace(/\n/g,"|||");
-  } else {
-    toSend = $.trim(hist.innerText).replace(/\n/g,"|||");
-  }
+  toSend = $.trim(prompt).replace(/\n/g,"|||");
+  toSend += '|';
+
+  toSend += getDim() + '|' + getSampling();
+  console.log(toSend);
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
   	if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
       console.log(xmlHttp.responseText);
       nlgResponse = xmlHttp.responseText;
-      hist.innerHTML += `<div class="history nlg">${nlgResponse}</div>`;
-      hist.innerHTML += `<hr class="removable">`;
+      hist.innerHTML = `<div class="history nlg">${nlgResponse}</div>`;
       checkboxes(document.getElementById("enableDialogue"));
       checkboxes(document.getElementById("separateTalkTurns"));
     }
   }
   xmlHttp.open("POST", window.location.href+"?inputText="+toSend, true);
   xmlHttp.send();
+}
+
+
+function getSampling(){
+  var retval = "";
+
+  if (document.getElementById("g").checked){
+    return "g";
+  }
+  else if (document.getElementById("b5").checked){
+    return "b5";
+  }
+  else {
+    return "b10";
+  }
+}
+
+function getDim(){
+  var retval = "";
+
+  if (document.getElementById("xintent").checked){
+    retval += "xIntent,";
+  }
+
+  if (document.getElementById("xreact").checked){
+    retval += "xReact,";
+  }
+  if (document.getElementById("oreact").checked){
+    retval += "oReact,";
+  }
+  if (document.getElementById("xattrib").checked){
+    retval += "xAttrib,";
+  }
+  if (document.getElementById("xeffect").checked){
+    retval += "xEffect,";
+  }
+  if (document.getElementById("oeffect").checked){
+    retval += "oEffect,";
+  }
+  if (document.getElementById("xneed").checked){
+    retval += "xNeed,";
+  }
+  if (document.getElementById("xwant").checked){
+    retval += "xWant,";
+  }
+  if (document.getElementById("owant").checked){
+    retval += "oWant,";
+  }
+  return retval.slice(0, -1);
 }
 
 function checkboxes(cb){

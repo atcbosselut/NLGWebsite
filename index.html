@@ -14,23 +14,48 @@
 	<div class="container">
 		<div class="page-header">
   		<h1>ATOMIC COMeT demo</h1>
+      <img src="comet.png">
   		<h2><small>Let the COMeT model generate the knowledge your model needs to understand social situations</small></h2>
+
   	</div>
   	<div class="row">
 	  <div class="col-sm-12">
+      <h5> Atomic Relation</h5>
 	    <form>
-	      <input id="enableDialogue" type="checkbox" onchange="checkboxes(this)">&nbsp;This is a dialogue
-	      <br>
-	      <input id="separateTalkTurns" type="checkbox" onchange="checkboxes(this)" checked="checked">&nbsp;These are disconnected tries
+        <input id="xintent" type="checkbox">&nbsp;xIntent
+        <br>
+        <input id="xreact" type="checkbox">&nbsp;xReact
+        <br>
+        <input id="oreact" type="checkbox">&nbsp;oReact
+        <br>
+        <input id="xeffect" type="checkbox">&nbsp;xEffect
+        <br>
+        <input id="oeffect" type="checkbox">&nbsp;oEffect
+        <br>
+        <input id="xattrib" type="checkbox">&nbsp;xAttrib
+        <br>
+        <input id="xneed" type="checkbox">&nbsp;xNeed
+        <br>
+        <input id="xwant" type="checkbox">&nbsp;xWant
+        <br>
+        <input id="owant" type="checkbox">&nbsp;oWant
+
 	    </form>
 	    </div>
   	</div>
-  	<hr>
-  	<div class="row">
-  		<div class="col-sm-6">
-  			<div id="history"></div>
-  		</div>
-  	</div>
+    <div class="row">
+    <div class="col-sm-12">
+      <h5> Sampling method</h5>
+      <form>
+        <input id="g" name="sampling" type="radio">&nbsp;Greedy
+        <br>
+        <input id="b5" name="sampling" type="radio">&nbsp;Beam=5
+        <br>
+        <input id="b10" name="sampling" type="radio">&nbsp;Beam=10
+      </form>
+      </div>
+    </div>
+    <br>
   	<div class="row">
   		<div class="col-sm-12">
   			<textarea id="inputfield" rows="2" cols="100" style="color: grey;font-style: italic;">Enter your text here.</textarea>
@@ -38,5 +63,11 @@
   			<button class="btn btn-primary" onclick="getResponse()">Submit</button>
   		</div>
   	</div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <div id="history"></div>
+      </div>
+    </div>
   </div>
 </bod>
