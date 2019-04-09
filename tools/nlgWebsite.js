@@ -20,8 +20,13 @@ function getResponse(){
   var toSend;
   toSend = $.trim(prompt).replace(/\n/g,"|||");
   toSend += '|';
+  if(document.getElementById('fileid').value=="atomic"){
+    toSend += getDimAtomic() + '|' + getSampling();
 
-  toSend += getDim() + '|' + getSampling();
+  }
+  else{
+    toSend += getDimConceptNet() + '|' + getSampling();
+  }
   console.log(toSend);
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
@@ -52,7 +57,78 @@ function getSampling(){
   }
 }
 
-function getDim(){
+function getDimConceptNet(){
+  var retval = "";
+  if (document.getElementById("AtLocation").checked){
+    retval += "AtLocation,";
+  }
+
+  if (document.getElementById("CapableOf").checked){
+    retval += "CapableOf,";
+  }
+  if (document.getElementById("Causes").checked){
+    retval += "Causes,";
+  }
+  if (document.getElementById("CausesDesire").checked){
+    retval += "CausesDesire,";
+  }
+  if (document.getElementById("CreatedBy").checked){
+    retval += "CreatedBy,";
+  }
+  if (document.getElementById("DefinedAs").checked){
+    retval += "DefinedAs,";
+  }
+  if (document.getElementById("Desires").checked){
+    retval += "Desires,";
+  }
+  if (document.getElementById("HasA").checked){
+    retval += "HasA,";
+  }
+  if (document.getElementById("HasFirstSubevent").checked){
+    retval += "HasFirstSubevent,";
+  }
+
+  if (document.getElementById("HasLastSubevent").checked){
+    retval += "HasLastSubevent,";
+  }
+  if (document.getElementById("HasPrerequisite").checked){
+    retval += "HasPrerequisite,";
+  }
+  if (document.getElementById("HasProperty").checked){
+    retval += "HasProperty,";
+  }
+  if (document.getElementById("HasSubevent").checked){
+    retval += "HasSubevent,";
+  }
+  if (document.getElementById("IsA").checked){
+    retval += "IsA,";
+  }
+  if (document.getElementById("MadeOf").checked){
+    retval += "MadeOf,";
+  }
+  if (document.getElementById("MotivatedByGoal").checked){
+    retval += "MotivatedByGoal,";
+  }
+  if (document.getElementById("PartOf").checked){
+    retval += "PartOf,";
+  }
+  if (document.getElementById("ReceivesAction").checked){
+    retval += "ReceivesAction,";
+  }
+  if (document.getElementById("SymbolOf").checked){
+    retval += "SymbolOf,";
+  }
+  if (document.getElementById("UsedFor").checked){
+    retval += "UsedFor,";
+  }
+
+  if (document.getElementById("all").checked){
+    retval = "all";
+  }
+  return retval.slice(0, -1);
+}
+
+function getDimAtomic(){
   var retval = "";
 
   if (document.getElementById("xintent").checked){
@@ -82,6 +158,9 @@ function getDim(){
   }
   if (document.getElementById("owant").checked){
     retval += "oWant,";
+  }
+  if (document.getElementById("all").checked){
+    retval = "all";
   }
   return retval.slice(0, -1);
 }

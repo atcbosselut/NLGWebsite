@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+  <title>NLG Demo</title>
+  <script src="tools/jquery-3.1.1.min.js"></script>
+  <script src="tools/bootstrap.min.js"></script>
+  <script src="tools/nlgWebsite.js"></script>
+  <link rel="stylesheet" href="tools/bootstrap.min.css">
+  <link rel="stylesheet" href="tools/style.css">
+  <link rel="shortcut icon" href="tools/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="tools/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+  		<h1><img src="comet.png">CONCEPTNET COMeT demo</h1>
+      
+  		<h2><small>Let the COMeT model generate the knowledge your model needs to understand social situations</small></h2>
+
+  	</div>
+  	<div class="row">
+	  <div class="col-sm-7" style="background-color:#f0f8ff">
+      <h5> ConceptNet Relation</h5>
+	    <form>
+        <input type="hidden" id="fileid" name="fileid" value="cptnet">
+        <table>
+        <tr><td width="150px"><input id="AtLocation" type="checkbox">&nbsp;AtLocation</td><td width="150px"><input id="CapableOf" type="checkbox">&nbsp;CapableOf</td><td width="150px"><input id="Causes" type="checkbox">&nbsp;Causes</td><td><input id="CausesDesire" type="checkbox">&nbsp;CausesDesire</td></tr>
+        <tr><td><input id="CreatedBy" type="checkbox">&nbsp;CreatedBy</td><td><input id="DefinedAs" type="checkbox">&nbsp;DefinedAs</td><td><input id="Desires" type="checkbox">&nbsp;Desires</td><td><input id="HasA" type="checkbox">&nbsp;HasA</td></tr>
+        <tr><td><input id="HasFirstSubevent" type="checkbox">&nbsp;HasFirstSubevent</td><td><input id="HasLastSubevent" type="checkbox">&nbsp;HasLastSubevent</td><td><input id="HasPrerequisite" type="checkbox">&nbsp;HasPrerequisite</td><td><input id="HasProperty" type="checkbox">&nbsp;HasProperty</td></tr>
+        <tr><td><input id="HasSubevent" type="checkbox">&nbsp;HasSubevent</td><td><input id="IsA" type="checkbox">&nbsp;IsA</td><td><input id="MadeOf" type="checkbox">&nbsp;MadeOf</td><td><input id="MotivatedByGoal" type="checkbox">&nbsp;MotivatedByGoal</td></tr>
+        <tr><td><input id="PartOf" type="checkbox">&nbsp;PartOf</td><td><input id="ReceivesAction" type="checkbox">&nbsp;ReceivesAction</td><td><input id="SymbolOf" type="checkbox">&nbsp;SymbolOf</td><td><input id="UsedFor" type="checkbox">&nbsp;UsedFor</td></tr>
+        </table>
+	    </form>
+        <br>
+	    </div>
+    <div class="col-sm-2" style="background-color:#ede7f8">
+      <h5> Sampling method</h5>
+      <form>
+        <input id="g" name="sampling" type="radio">&nbsp;Greedy
+        <br>
+        <input id="b5" name="sampling" type="radio">&nbsp;Beam=5
+        <br>
+        <input id="b10" name="sampling" type="radio">&nbsp;Beam=10
+        <br>
+        <br>
+        <br>
+        <br>
+      </form>
+      </div>
+    </div>
+    <br>
+  	<div class="row">
+  		<div class="col-sm-12">
+  			<textarea id="inputfield" rows="2" cols="100" style="color: grey;font-style: italic;">Enter your text here.</textarea>
+  			<br>
+  			<button class="btn btn-primary" onclick="getResponse()">Submit</button>
+  		</div>
+  	</div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <div id="history"></div>
+      </div>
+    </div>
+  </div>
+</bod>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+  <title>NLG Demo</title>
+  <script src="tools/jquery-3.1.1.min.js"></script>
+  <script src="tools/bootstrap.min.js"></script>
+  <script src="tools/nlgWebsite.js"></script>
+  <link rel="stylesheet" href="tools/bootstrap.min.css">
+  <link rel="stylesheet" href="tools/style.css">
+  <link rel="shortcut icon" href="tools/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="tools/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+	<div class="container">
+		<div class="page-header">
+  		<h1><img src="comet.png">ATOMIC COMeT demo</h1>
+      
+  		<h2><small>Let the COMeT model generate the knowledge your model needs to understand social situations</small></h2>
+
+  	</div>
+  	<div class="row">
+	  <div class="col-sm-4" style="background-color:#f0f8ff">
+
+      <h5> Atomic Relation</h5>
+	    <form>
+        <input type="hidden" id="fileid" name="fileid" value="atomic">
+        <table>
+        <tr><td width="200px"><input id="xintent" type="checkbox">&nbsp;xIntent</td><td><input id="xattrib" type="checkbox">&nbsp;xAttrib</td></tr>
+        <tr><td><input id="xreact" type="checkbox">&nbsp;xReact</td><td><input id="oreact" type="checkbox">&nbsp;oReact</td></tr>
+        <tr><td><input id="xeffect" type="checkbox">&nbsp;xEffect</td><td><input id="oeffect" type="checkbox">&nbsp;oEffect</td></tr>
+        <tr><td><input id="xwant" type="checkbox">&nbsp;xWant</td><td><input id="owant" type="checkbox">&nbsp;oWant</td></tr>
+        <tr><td><input id="xneed" type="checkbox">&nbsp;xNeed</td><td><input id="all" type="checkbox">&nbsp;ALL</td></td></tr>
+        </table>
+	    </form>
+        <br>
+	    </div>
+    <div class="col-sm-2" style="background-color:#ede7f8">
+      <h5> Sampling method</h5>
+      <form>
+        <input id="g" name="sampling" type="radio">&nbsp;Greedy
+        <br>
+        <input id="b5" name="sampling" type="radio">&nbsp;Beam=5
+        <br>
+        <input id="b10" name="sampling" type="radio">&nbsp;Beam=10
+      </form>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+    <br>
+  	<div class="row">
+  		<div class="col-sm-12">
+  			<textarea id="inputfield" rows="2" cols="100" style="color: grey;font-style: italic;">Enter your text here.</textarea>
+  			<br>
+  			<button class="btn btn-primary" onclick="getResponse()">Submit</button>
+  		</div>
+  	</div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <div id="history"></div>
+      </div>
+    </div>
+  </div>
+</bod>
