@@ -15,7 +15,7 @@ function getResponse(){
   console.log(prompt);
 
   // Sending stuff to server (for now, no server)
-  var nlgResponse = "SWABHA's MY FAVORITE NLPer!";
+  var nlgResponse = "temp";
 
   var toSend;
   toSend = $.trim(prompt).replace(/\n/g,"|||");
@@ -141,8 +141,8 @@ function getDimAtomic(){
   if (document.getElementById("oreact").checked){
     retval += "oReact,";
   }
-  if (document.getElementById("xattrib").checked){
-    retval += "xAttrib,";
+  if (document.getElementById("xattr").checked){
+    retval += "xAttr,";
   }
   if (document.getElementById("xeffect").checked){
     retval += "xEffect,";
